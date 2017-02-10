@@ -1,0 +1,45 @@
+{
+  "name": "redux-rocks-services",
+  "version": "1.0.0",
+  "description": "Backend for redux tutorial",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "babel src -d dist",
+    "start": "node dist/index.js",
+    "dev": "babel-watch src/index.js",
+    "test": "mocha --reporter=nyan --compilers js:babel-core/register --recursive",
+    "test:watch": "npm run test -- --watch"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ],
+    "plugins": [
+      ["module-resolver", {
+        "root": ["./src"]
+      }]
+    ]
+  },
+  "keywords": [],
+  "author": "Victor Rene Nitu <victornitu@vvfluxembourg.com> (http://www.vvfluxembourg.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
+    "babel-plugin-module-resolver": "^2.5.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-watch": "^2.0.6",
+    "chai": "^3.5.0",
+    "eslint": "^3.14.1",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "config": "^1.24.0",
+    "ramda": "^0.23.0",
+    "redux": "^3.6.0",
+    "socket.io": "^1.7.2",
+    "winston": "^2.3.1"
+  }
+}
