@@ -1,13 +1,14 @@
-import * as r           from 'ramda';
-import React            from 'react';
-import {Button}         from 'react-toolbox/lib/button';
+import * as r   from 'ramda';
+import React    from 'react';
+import {Button} from 'react-toolbox/lib/button';
 import {
     Card,
-    CardTitle,
     CardText,
     CardActions
-}                       from 'react-toolbox/lib/card';
-import FontIcon         from 'react-toolbox/lib/font_icon';
+}               from 'react-toolbox/lib/card';
+import FontIcon from 'react-toolbox/lib/font_icon';
+
+import Winner   from './winner';
 
 export default class Voting extends React.PureComponent {
 
@@ -17,18 +18,6 @@ export default class Voting extends React.PureComponent {
             return <Winner ref="winner" winner={winner}/>;
         }
         return <Entries pair={pair} choice={choice} vote={vote}/>;
-    }
-}
-
-class Winner extends React.PureComponent {
-
-    render() {
-        const {winner} = this.props;
-        return (
-            <Card>
-                <CardTitle title={`The winner is ${winner}`}/>
-            </Card>
-        );
     }
 }
 

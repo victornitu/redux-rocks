@@ -7,7 +7,7 @@
     "clean": "rm -rf dist",
     "build": "webpack && cp index.html dist/",
     "dev": "webpack-dev-server",
-    "test": "mocha --reporter=nyan --compilers js:babel-core/register,js:./test/css-modules-compiler.js --require ./test/test-helper.js \"test/**/*@(.js|.jsx)\"",
+    "test": "mocha --reporter=nyan --compilers js:babel-core/register,js:./test/css-modules-compiler.js --require ./test/helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watchclear"
   },
   "babel": {

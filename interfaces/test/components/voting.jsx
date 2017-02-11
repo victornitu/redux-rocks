@@ -70,7 +70,7 @@ describe('Voting', () => {
         buttons.length.should.equal(0);
 
         const winner = ReactDOM.findDOMNode(component.refs.winner);
-        (() => winner.should.be.ok)();
+        winner.should.be.ok;
         winner.textContent.should.contain(pair[0]);
     });
 });
