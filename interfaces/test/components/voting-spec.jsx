@@ -1,5 +1,5 @@
 import chai                             from 'chai';
-import * as R                           from 'ramda';
+import * as r                           from 'ramda';
 import React                            from 'react';
 import ReactDOM                         from 'react-dom';
 import {
@@ -14,7 +14,7 @@ import Voting                           from '../../src/components/voting';
 chai.should();
 
 describe('Voting', () => {
-    const pair = R.pair('A', 'B');
+    const pair = r.pair('A', 'B');
     const choice = pair[0];
 
     it('renders a pair of buttons', () => {

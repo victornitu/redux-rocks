@@ -1,70 +1,72 @@
-import * as R           from 'ramda';
+import * as r           from 'ramda';
 import React            from 'react';
-import PureRenderMixin  from 'react-addons-pure-render-mixin';
+import {Button}         from 'react-toolbox/lib/button';
 import {
     Card,
     CardTitle,
     CardText,
     CardActions
 }                       from 'react-toolbox/lib/card';
-import {Button}         from 'react-toolbox/lib/button';
 import FontIcon         from 'react-toolbox/lib/font_icon';
 
-function doNothing() {
-    console.log('No action specified in Voting component');
-}
-
-export default class Voting extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.renderEntry = this.renderEntry.bind(this);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    }
+export default class Voting extends React.PureComponent {
 
     render() {
-        if (this.props.winner) {
-            return this.renderWinner();
+        const {winner, pair, choice, vote} = this.props;
+        if (winner) {
+            return <Winner ref="winner" winner={winner}/>;
         }
-        return this.renderEntries();
+        return <Entries pair={pair} choice={choice} vote={vote}/>;
     }
+}
 
-    renderWinner() {
+class Winner extends React.PureComponent {
+
+    render() {
         const {winner} = this.props;
         return (
-            <Card ref="winner">
-                <CardTitle title={`Winner is ${winner}`}/>
+            <Card>
+                <CardTitle title={`The winner is ${winner}`}/>
             </Card>
         );
     }
+}
 
-    renderEntries() {
-        const text = "Vote for your favorite!";
-        const pair = R.propOr([], 'pair', this.props);
+class Entries extends React.PureComponent {
+
+    render() {
+        const {choice, vote} = this.props;
+        const pair = r.propOr([], 'pair', this.props);
         return (
             <Card>
-                <CardText>{text}</CardText>
+                <CardText>Vote for your favorite!</CardText>
                 <CardActions>
-                    {pair.map(this.renderEntry)}
+                    {pair.map(e => <Entry key={e} entry={e} choice={choice} vote={vote} />)}
                 </CardActions>
             </Card>
         );
     }
+}
 
-    renderEntry(entry) {
-        const hasChosen = !!this.props.choice;
-        const action = R.propOr(doNothing, 'vote', this.props);
-        const selected = R.propEq('choice', entry, this.props);
+class Entry extends React.PureComponent {
+
+    render() {
+        const {entry, choice} = this.props;
+        const action = r.propOr(doNothing, 'vote', this.props);
+        const selected = r.equals(entry, choice);
         const icon = selected ? 'favorite' : 'favorite_border';
         return (
             <Button
-                key={entry}
                 label={entry}
-                disabled={hasChosen}
-                onClick={() => action(entry)}
-            >
+                disabled={!!choice}
+                onClick={() => action(entry)}>
+
                 <FontIcon value={icon}/>
             </Button>
         );
     }
+}
+
+function doNothing() {
+    console.log('No action specified in Voting component');
 }
