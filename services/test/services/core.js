@@ -1,7 +1,7 @@
 import chai     from 'chai';
 import * as r   from 'ramda';
 
-import * as a   from 'actions/core';
+import * as s   from 'services/core';
 import * as l   from 'tools/logger';
 
 chai.should();
@@ -16,25 +16,25 @@ describe('Application logic', () => {
 
         it('adds the entries to the state', () => {
             l.debug('Test ** init ** add');
-            a.init(entries, state).should.eql(result);
+            s.init(entries, state).should.eql(result);
         });
 
         it('adds the entries to the state (curry)', () => {
             l.debug('Test ** init ** add (curry)');
-            a.init(entries)(state).should.eql(result);
+            s.init(entries)(state).should.eql(result);
         });
     });
 
     describe('** pick **', () => {
-        const entries = ['A', 'B', 'a'];
+        const entries = ['A', 'B', 's'];
 
         it('takes the next two entries under vote', () => {
             l.debug('Test ** pick ** next 2');
             const pair = r.pair('A', 'B');
             const state = {entries};
-            a.pick(state).should.eql({
+            s.pick(state).should.eql({
                 vote: {pair},
-                entries: ['a']
+                entries: ['s']
             });
         });
 
@@ -46,11 +46,11 @@ describe('Application logic', () => {
                 vote: {pair, tally},
                 entries
             };
-            a.pick(state).should.eql({
+            s.pick(state).should.eql({
                 vote: {
                     pair: r.pair('A', 'B')
                 },
-                entries: ['a', 'D']
+                entries: ['s', 'D']
             });
         });
 
@@ -62,11 +62,11 @@ describe('Application logic', () => {
                 vote: {pair, tally},
                 entries
             };
-            a.pick(state).should.eql({
+            s.pick(state).should.eql({
                 vote: {
                     pair: r.pair('A', 'B')
                 },
-                entries: ['a', 'D', 'E']
+                entries: ['s', 'D', 'E']
             });
         });
 
@@ -78,7 +78,7 @@ describe('Application logic', () => {
                 vote: {pair, tally},
                 entries: []
             };
-            a.pick(state).should.eql({
+            s.pick(state).should.eql({
                 winner: 'A'
             });
         });
@@ -89,14 +89,14 @@ describe('Application logic', () => {
         const tally = {'A': 1};
         const state = { pair };
 
-        it('creates a tally for the voted entry', () => {
+        it('creates s tally for the voted entry', () => {
             l.debug('Test ** vote ** create tally');
-            a.vote('A', state).should.eql({ pair, tally});
+            s.vote('A', state).should.eql({ pair, tally});
         });
 
-        it('creates a tally for the voted entry (curry)', () => {
+        it('creates s tally for the voted entry (curry)', () => {
             l.debug('Test ** vote ** create tally (curry)');
-            a.vote('A')(state).should.eql({ pair, tally});
+            s.vote('A')(state).should.eql({ pair, tally});
         });
 
         const before = r.zipObj(pair, r.pair(3, 2));
@@ -106,12 +106,12 @@ describe('Application logic', () => {
 
         it('adds to existing tally for the voted entry', () => {
             l.debug('Test ** vote ** add existing tally');
-            a.vote('A', state1).should.eql(state2);
+            s.vote('A', state1).should.eql(state2);
         });
 
         it('adds to existing tally for the voted entry (curry)', () => {
             l.debug('Test ** vote ** add existing tally (curry)');
-            a.vote('A')(state1).should.eql(state2);
+            s.vote('A')(state1).should.eql(state2);
         });
     });
 });

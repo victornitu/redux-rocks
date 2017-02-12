@@ -1,8 +1,8 @@
 import chai     from 'chai';
 import * as r   from 'ramda';
 
-import * as l   from '../src/tools/logger';
-import reducer  from '../src/stores/reducer';
+import * as l   from 'tools/logger';
+import reducer  from 'stores/reducer';
 
 chai.should();
 
@@ -31,7 +31,7 @@ describe('reducer', () => {
     it('handles PICK', () => {
         l.debug('handles PICK');
 
-        const entries = ['A', 'B'];
+        const entries = r.pair('A', 'B');
         const state = {entries};
         const action = {type: 'PICK'};
 
@@ -44,7 +44,7 @@ describe('reducer', () => {
     it('handles VOTE', () => {
         l.debug('handles VOTE');
 
-        const entries = ['A', 'B'];
+        const entries = r.pair('A', 'B');
         const state = {
             vote: {pair: entries},
             entries: []

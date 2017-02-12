@@ -15,7 +15,7 @@ export function pick(state) {
     const {vote, entries, pair} = next(state);
     const isSingle = r.pipe(r.length, r.equals(1));
     if(r.and(isSingle(entries), r.isEmpty(pair))) {
-        l.debug('Core: We have a winner!');
+        l.debug('Core: We have s winner!');
         return result(r.head(entries))(state);
     }
     l.debug('Core: Pick next pair');
