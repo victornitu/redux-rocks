@@ -1,11 +1,8 @@
-FROM node:argon
+FROM nginx
 
-RUN mkdir -p /app
+RUN mkdir /app
 WORKDIR /app
 
-COPY . /app
-RUN npm i && npm run build
+COPY ./dist /app
 
-EXPOSE 8080
-
-CMD [ "npm", "start" ]
+COPY nginx.conf /etc/nginx/nginx.conf

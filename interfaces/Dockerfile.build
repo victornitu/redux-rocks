@@ -1,0 +1,9 @@
+FROM node:argon
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY . /app
+RUN npm i --production && npm run build
+
+VOLUME /app/dist ./dist
