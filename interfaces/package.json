@@ -4,8 +4,8 @@
   "description": "Interface for redux tutorial",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf dist",
-    "build": "webpack && cp index.html dist/",
+    "clean": "rm -rf build/src/*",
+    "build": "webpack",
     "dev": "webpack-dev-server",
     "test": "NODE_PATH=./src mocha --reporter=nyan --compilers js:babel-core/register,js:./test/css-modules-compiler.js --require ./test/helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watchclear"

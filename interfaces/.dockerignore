@@ -1,7 +1,5 @@
-Dockerfile
+build
 README.md
-nginx.conf
-dist
 node_modules
 test
 npm-debug.log

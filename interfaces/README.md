@@ -1,17 +1,32 @@
 # README #
 
-### How to build the docker image ###
+### Build the docker image for the build container ###
 
-docker build -t <image-name> .
+_**/interfaces>_ docker build -t [**image-name**] .
 
-### How to run the container in production mode ###
+### Run the build container ###
 
-docker run -d -p <mapped-port>:8080 <image-name>
+_**/interfaces>_ docker run --name [**container-name**] [**image-name**]
 
-### How to run the container in development mode ###
+### Extract the compiled application ###
 
-docker run -d -p <mapped-port>:8080 -v $(pwd)/src:/app/src <image-name> npm run dev
+_**/interfaces>_ docker cp [**container-name**]:app/build/src build
 
-### How to test the running container ###
+### Remove build container ###
 
-curl -i localhost:<selected-port>
+_**/interfaces>_ docker rm [**container-name**]
+
+### Build the docker image for the production container ###
+
+_**/interfaces>_ cd build
+
+_**/interfaces/build>_ docker build -t [**image-name**] .
+
+### Run the production container ###
+
+_**/interfaces/build>_ docker run -d -p [**port**]:8080 [**image-name**]
+
+### Test the running container ###
+
+_**/services>_ curl -i localhost:[**port**]
+

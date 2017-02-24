@@ -12,7 +12,7 @@ module.exports = {
         './src/index.js'
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'build/src'),
         publicPath: '/',
         filename: 'bundle.js'
     },
@@ -25,7 +25,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: './dist',
+        contentBase: './build/src',
         hot: true
     },
     module: {
