@@ -3,7 +3,9 @@ services:
   app-services:
     build: ./services
     ports:
-      - "8009:8080"
+      - "8090:8090"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   app-interfaces:
     build: ./interfaces/build
     ports:

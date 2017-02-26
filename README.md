@@ -7,8 +7,9 @@ https://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html
 
 
 ### Start application ###
+    docker-compose up -d
 
 Build the interfaces source first, see interfaces README
 
-    docker-compose up
-
+### Stop application ###
+    docker-compose dowm
