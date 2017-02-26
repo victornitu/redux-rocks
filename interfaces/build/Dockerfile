@@ -1,8 +1,8 @@
 FROM nginx
 
-RUN mkdir /app
+RUN mkdir -p /app/src
 WORKDIR /app
 
 COPY index.html /app
-COPY src /app
+COPY src /app/src
 COPY nginx.conf /etc/nginx/

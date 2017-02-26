@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app-services:
+    build: ./services
+    ports:
+      - "8009:8080"
+  app-interfaces:
+    build: ./interfaces/build
+    ports:
+      - "8010:8080"

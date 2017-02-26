@@ -25,8 +25,3 @@ _**/interfaces/build>_ docker build -t [**image-name**] .
 ### Run the production container ###
 
 _**/interfaces/build>_ docker run -d -p [**port**]:8080 [**image-name**]
-
-### Test the running container ###
-
-_**/services>_ curl -i localhost:[**port**]
-
